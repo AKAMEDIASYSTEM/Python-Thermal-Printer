@@ -13,12 +13,12 @@ import atexit
 API_KEY = '718923e89a79ce5e8c3f5e888ea624e3'
 wordURL = 'http://words.bighugelabs.com/api/2/718923e89a79ce5e8c3f5e888ea624e3/' # then {word} then '/json'
 sensor_pin = 'P9_40'
-extreme_lo = ['dark','inky','shadowed','midnight']
-mid_lo = ['shady','dim','grey','faint']
-mid_hi = ['light','shiny','clear','lustrous']
-extreme_hi = ['blinding','superbright','brilliant','vivid']
+extreme_lo = ['dark','inky','shadowed','midnight''black','sinister','dour','glowering','glum','moody','morose','saturnine','sour','sullen','benighted','obscure','blue','dingy','disconsolate','dismal','gloomy','grim','sorry','drab','drear','dreary','colored','coloured','dark-skinned','non-white','depressing','dispiriting']
+mid_lo = ['shady','dim','grey','faint','weak','dim','shadowy','vague','wispy','feeble','light','swooning','light-headed','lightheaded','fainthearted','timid','faint-hearted','cloudy','muddy','murky','turbid']
+mid_hi = ['light','shiny','clear','lustrous','diaphanous','filmy','gauze-like','gossamer','see-through','sheer','transparent','vaporous','vapourous','cobwebby']
+extreme_hi = ['blinding','superbright','brilliant','vivid','brilliant','vivid','smart','burnished','lustrous','shining','shiny','undimmed','promising','sunny','sunshiny']
 
-preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ']
+preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ','Well looky here, it is ','Suddenly: ','Call the police, it is ']
 
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
