@@ -29,7 +29,7 @@ rPast = 0
 def checkSensor(rPast):
 	r = adc.read(sensor_pin)
 
-	if abs(r-rPast)>0.1:
+	if Math.abs(r-rPast) > 0.1:
 		if r < 0.25:
 			statement = random.choice(preamble) + random.choice(extreme_lo)
 			printer.print(statement)
