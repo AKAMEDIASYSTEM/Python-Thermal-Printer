@@ -26,7 +26,7 @@ printer.feed(3)
 printer.print("o hai")
 rPast = 0
 
-def checkSensor():
+def checkSensor(rPast):
 	r = adc.read(sensor_pin)
 
 	if abs(r-rPast)>0.1:
@@ -60,5 +60,5 @@ if __name__ == '__main__':
 	adc.setup()
 	atexit.register(exit_handler)
 	while True:
-		checkSensor()
+		checkSensor(rPast)
 		time.sleep(10)
