@@ -2,7 +2,7 @@
 # It's project HOT_PANTS
 
 import Adafruit_BBIO.UART as uart
-import Adafruit_Thermal.*
+from Adafruit_Thermal import *
 import Adafruit_BBIO.ADC as adc
 import Adafruit_BBIO.GPIO as gpio
 import time
