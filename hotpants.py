@@ -10,7 +10,7 @@ from serial import Serial
 import random
 import atexit
 
-API_KEY = 
+API_KEY = '718923e89a79ce5e8c3f5e888ea624e3'
 wordURL = 'http://words.bighugelabs.com/api/2/718923e89a79ce5e8c3f5e888ea624e3/' # then {word} then '/json'
 sensor_pin = 'P9_40'
 extreme_lo = {'dark','inky','shadowed','midnight'}
