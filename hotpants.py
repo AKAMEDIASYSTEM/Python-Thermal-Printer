@@ -23,7 +23,7 @@ def checkSensor():
 	printer.feed(3)
 
 def exit_handler():
-    print 'exiting'
+    # print 'exiting'
     adc.cleanup()
     # uart.cleanup() # not yet supported?
 
