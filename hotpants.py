@@ -9,4 +9,6 @@ import time
 from serial import Serial
 
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
+printer.begin()
+printer.feed()
 printer.print("o hai")
