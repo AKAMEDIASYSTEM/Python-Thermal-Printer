@@ -24,29 +24,31 @@ printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
 printer.feed(3)
 printer.print("o hai")
+rPast = 0
 
 def checkSensor():
 	r = adc.read(sensor_pin)
 
-	# if(hugeChange(r)):
-	if r < 0.25:
-		statement = random.choice(preamble) + random.choice(extreme_lo)
-		printer.print(statement)
-		printer.feed(1)
-	elif r < 0.5:
-		statement = random.choice(preamble) + random.choice(mid_lo)
-		printer.print(statement)
-		printer.feed(1)
-	elif r < 0.75:
-		statement = random.choice(preamble) + random.choice(mid_hi)
-		printer.print(statement)
-		printer.feed(1)
-	else:
-		statement = random.choice(preamble) + random.choice(extreme_hi)
-		printer.print(statement)
-		printer.feed(1)
-	printer.print(r)
-	printer.feed(2)
+	if abs(r-rPast)>0.1:
+		if r < 0.25:
+			statement = random.choice(preamble) + random.choice(extreme_lo)
+			printer.print(statement)
+			printer.feed(1)
+		elif r < 0.5:
+			statement = random.choice(preamble) + random.choice(mid_lo)
+			printer.print(statement)
+			printer.feed(1)
+		elif r < 0.75:
+			statement = random.choice(preamble) + random.choice(mid_hi)
+			printer.print(statement)
+			printer.feed(1)
+		else:
+			statement = random.choice(preamble) + random.choice(extreme_hi)
+			printer.print(statement)
+			printer.feed(1)
+		printer.print(r)
+		printer.feed(2)
+		rPast = r
 
 def exit_handler():
     pass
