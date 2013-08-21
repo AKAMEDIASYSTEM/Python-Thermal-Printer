@@ -7,10 +7,18 @@ import Adafruit_BBIO.ADC as adc
 import Adafruit_BBIO.GPIO as gpio
 import time
 from serial import Serial
+import random
 import atexit
 
+API_KEY = 
+wordURL = 'http://words.bighugelabs.com/api/2/718923e89a79ce5e8c3f5e888ea624e3/' # then {word} then '/json'
 sensor_pin = 'P9_40'
+extreme_lo = {'dark','inky','shadowed','midnight'}
+mid_lo = {'shady','dim','grey','faint'}
+mid_hi = {'light','shiny','clear','lustrous'}
+extreme_hi = {'blinding','superbright','brilliant','vivid'}
 
+preamble = {'Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is '}
 
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
@@ -19,8 +27,26 @@ printer.print("o hai")
 
 def checkSensor():
 	r = adc.read(sensor_pin)
+
+	# if(hugeChange(r)):
+	if r < 0.25:
+		statement = random.choice(preamble) + random.choice(extreme_lo)
+		printer.print(statement)
+		printer.feed(1)
+	elif r < 0.5:
+		statement = random.choice(preamble) + random.choice(mid_lo)
+		printer.print(statement)
+		printer.feed(1)
+	elif r < 0.75:
+		statement = random.choice(preamble) + random.choice(mid_hi)
+		printer.print(statement)
+		printer.feed(1)
+	else:
+		statement = random.choice(preamble) + random.choice(extreme_hi)
+		printer.print(statement)
+		printer.feed(1)
 	printer.print(r)
-	printer.feed(3)
+	printer.feed(2)
 
 def exit_handler():
     pass
