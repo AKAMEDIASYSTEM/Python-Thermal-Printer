@@ -9,7 +9,6 @@ import time
 from serial import Serial
 import random
 import atexit
-import Math
 
 API_KEY = '718923e89a79ce5e8c3f5e888ea624e3'
 wordURL = 'http://words.bighugelabs.com/api/2/718923e89a79ce5e8c3f5e888ea624e3/' # then {word} then '/json'
@@ -30,7 +29,7 @@ rPast = 0
 def checkSensor(rPast):
 	r = adc.read(sensor_pin)
 
-	if Math.abs(r-rPast) > 0.1:
+	if abs(r-rPast) > 0.1:
 		if r < 0.25:
 			statement = random.choice(preamble) + random.choice(extreme_lo)
 			printer.print(statement)
