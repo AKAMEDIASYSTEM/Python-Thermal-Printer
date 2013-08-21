@@ -13,12 +13,12 @@ import atexit
 API_KEY = '718923e89a79ce5e8c3f5e888ea624e3'
 wordURL = 'http://words.bighugelabs.com/api/2/718923e89a79ce5e8c3f5e888ea624e3/' # then {word} then '/json'
 sensor_pin = 'P9_40'
-extreme_lo = {'dark','inky','shadowed','midnight'}
-mid_lo = {'shady','dim','grey','faint'}
-mid_hi = {'light','shiny','clear','lustrous'}
-extreme_hi = {'blinding','superbright','brilliant','vivid'}
+extreme_lo = ['dark','inky','shadowed','midnight']
+mid_lo = ['shady','dim','grey','faint']
+mid_hi = ['light','shiny','clear','lustrous']
+extreme_hi = ['blinding','superbright','brilliant','vivid']
 
-preamble = {'Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is '}
+preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ']
 
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
