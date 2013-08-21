@@ -33,4 +33,4 @@ if __name__ == '__main__':
 	atexit.register(exit_handler)
 	while True:
 		checkSensor()
-		time.sleep(30)
+		time.sleep(10)
