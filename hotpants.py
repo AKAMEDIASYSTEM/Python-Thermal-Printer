@@ -29,6 +29,7 @@ def exit_handler():
     # uart.cleanup() # not yet supported?
 
 if __name__ == '__main__':
+	adc.setup()
 	atexit.register(exit_handler)
 	while True:
 		checkSensor()
