@@ -15,7 +15,7 @@
 # http://www.adafruit.com/products/600 Printer starter pack
 
 from __future__ import print_function
-import RPi.GPIO as GPIO
+import Adafruit_BBIO.GPIO as GPIO
 import subprocess, time, Image, socket
 from Adafruit_Thermal import *
 

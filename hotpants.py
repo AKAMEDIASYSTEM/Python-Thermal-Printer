@@ -22,6 +22,7 @@ preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ','W
 
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
+printer.upsideDownOn()
 printer.feed(3)
 printer.print("o hai")
 rPast = 0
