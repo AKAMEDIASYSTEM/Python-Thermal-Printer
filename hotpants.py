@@ -27,6 +27,23 @@ printer.feed(3)
 printer.print("o hai")
 rPast = 0
 
+def parseLen(text):
+	L = []
+	# add newlines to cause text to print properly
+	# we need this because we're printing upside-down text
+	# "call the police, it is faint-hearted" should be printed as
+	# "rted" then linebreak then "Call the police, it is faint-hea"
+	# which is "rted\nCall the police, it is faint-hea"
+
+	if len(text) > 32: # 32 is defined by the printer; max chars per line
+		r = len(text)%32
+		L.append(text[-r:]+'\n')
+		for i in reversed(range(len(text)/32)):
+			L.append(text[i*32:(i+1)*32]+'\n')
+	else:
+		L.append(text)
+	return ''.join(L)
+
 def checkSensor():
 	global rPast
 	r = adc.read(sensor_pin)
@@ -34,18 +51,22 @@ def checkSensor():
 	if abs(r-rPast) > 0.1:
 		if r < 0.25:
 			statement = random.choice(preamble) + random.choice(extreme_lo)
+			statement = parseLen(statement)
 			printer.print(statement)
 			printer.feed(1)
 		elif r < 0.5:
 			statement = random.choice(preamble) + random.choice(mid_lo)
+			statement = parseLen(statement)
 			printer.print(statement)
 			printer.feed(1)
 		elif r < 0.75:
 			statement = random.choice(preamble) + random.choice(mid_hi)
+			statement = parseLen(statement)
 			printer.print(statement)
 			printer.feed(1)
 		else:
 			statement = random.choice(preamble) + random.choice(extreme_hi)
+			statement = parseLen(statement)
 			printer.print(statement)
 			printer.feed(1)
 		printer.print(r)
