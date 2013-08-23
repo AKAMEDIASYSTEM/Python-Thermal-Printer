@@ -26,6 +26,7 @@ printer.upsideDownOn()
 printer.feed(3)
 printer.print("o hai")
 rPast = 0
+emission_threshold = 0.05
 
 def parseLen(text):
 	L = []
@@ -35,7 +36,7 @@ def parseLen(text):
 	# "rted" then linebreak then "Call the police, it is faint-hea"
 	# which is "rted\nCall the police, it is faint-hea"
 
-	if len(text) > 32: # 32 is defined by the printer; max chars per line
+	if len(text) > Adafruit_Thermal.maxColumn: # 32 is defined by the printer; max chars per line
 		r = len(text)%32
 		L.append(text[-r:]+'\n')
 		for i in reversed(range(len(text)/32)):
@@ -48,7 +49,7 @@ def checkSensor():
 	global rPast
 	r = adc.read(sensor_pin)
 
-	if abs(r-rPast) > 0.1:
+	if abs(r-rPast) > emission_threshold:
 		if r < 0.25:
 			statement = random.choice(preamble) + random.choice(extreme_lo)
 			statement = parseLen(statement)
