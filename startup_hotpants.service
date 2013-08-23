@@ -4,7 +4,7 @@ Description=NYT R&D HOT_PANTS startup
 [Service]
 Type=forking
 WorkingDirectory=/home/root/Python-Thermal-Printer/
-ExecStart=/usr/bin/python hotpants.py
+ExecStart=/usr/bin/python startup_hotpants.py
 KillMode=process
 
 [Install]
