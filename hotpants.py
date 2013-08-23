@@ -60,6 +60,7 @@ def exit_handler():
 
 if __name__ == '__main__':
 	adc.setup()
+	uart.setup("UART2")
 	atexit.register(exit_handler)
 	while True:
 		checkSensor()
