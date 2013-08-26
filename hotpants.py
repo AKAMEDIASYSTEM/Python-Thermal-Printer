@@ -51,24 +51,16 @@ def checkSensor():
 
 	if abs(r-rPast) > emission_threshold:
 		if r < 0.25:
-			statement = random.choice(preamble) + random.choice(extreme_lo)
-			statement = parseLen(statement)
-			printer.print(statement)
+			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_lo)))
 			printer.feed(1)
 		elif r < 0.5:
-			statement = random.choice(preamble) + random.choice(mid_lo)
-			statement = parseLen(statement)
-			printer.print(statement)
+			printer.print(parseLen(random.choice(preamble) + random.choice(mid_lo)))
 			printer.feed(1)
 		elif r < 0.75:
-			statement = random.choice(preamble) + random.choice(mid_hi)
-			statement = parseLen(statement)
-			printer.print(statement)
+			printer.print(parseLen(random.choice(preamble) + random.choice(mid_hi)))
 			printer.feed(1)
 		else:
-			statement = random.choice(preamble) + random.choice(extreme_hi)
-			statement = parseLen(statement)
-			printer.print(statement)
+			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_hi)))
 			printer.feed(1)
 		printer.print(r)
 		printer.feed(2)
