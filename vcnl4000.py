@@ -58,10 +58,10 @@ class VCNL4000():
     self.i2c.write8(self.VCNL4000_IRLED, cur)
 
   def continuousConversionOn(self):
-    self.i2c.write8(VCNL4000_AMBIENTPARAMETER, 0x89)
+    self.i2c.write8(self.VCNL4000_AMBIENTPARAMETER, 0x89)
 
   def continuousConversionOff(self):
-    self.i2c.write8(VCNL4000_AMBIENTPARAMETER, 0x09)    
+    self.i2c.write8(self.VCNL4000_AMBIENTPARAMETER, 0x09)    
 
 
   def readProximity(self):
