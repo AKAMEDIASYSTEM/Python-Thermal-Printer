@@ -61,8 +61,18 @@ class VCNL4000():
     self.i2c.write8(self.VCNL4000_AMBIENTPARAMETER, 0x89)
 
   def continuousConversionOff(self):
-    self.i2c.write8(self.VCNL4000_AMBIENTPARAMETER, 0x09)    
+    self.i2c.write8(self.VCNL4000_AMBIENTPARAMETER, 0x09) 
 
+  def setSignalFreq(self, freq):
+    # Setting the proximity IR test signal frequency. The proximity measurement is using a square IR 
+    # signal as measurement signal. Four different values are possible: 
+    # 00 = 3.125 MHz
+    # 01 = 1.5625 MHz
+    # 02 = 781.25 kHz (DEFAULT)
+    # 03 = 390.625 kHz
+    if freq not in [00, 01, 02, 03]:
+      freq = 02
+    self.i2c.write8(self.VCNL4000_SIGNALFREQ, freq)
 
   def readProximity(self):
     self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
