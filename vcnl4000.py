@@ -61,7 +61,7 @@ class VCNL4000():
       time.sleep(0.001)
 
   def readAmbient(self):
-    self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
+    self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREAMBIENT)
     while True:
       result = self.i2c.readU8(self.VCNL4000_COMMAND)
       if(result & self.VCNL4000_AMBIENTREADY):
