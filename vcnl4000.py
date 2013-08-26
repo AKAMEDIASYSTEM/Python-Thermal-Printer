@@ -44,7 +44,7 @@ class VCNL4000():
     i2c.write8(self.VCNL4000_IRLED, 10) # set to 10 * 10mA = 100mA
     current = i2c.readU8(self.VCNL4000_IRLED)
     print 'we think current is set to ', current
-    sigFreq = i2c.read8(self.VCNL4000_SIGNALFREQ)
+    sigFreq = i2c.readU8(self.VCNL4000_SIGNALFREQ)
     print 'we think sigFreq is ',sigFreq
     i2c.write8(self.VCNL4000_PROXIMITYADJUST, 0x81)
     proxAdj = i2c.readU8(self.VCNL4000_PROXIMITYADJUST)
