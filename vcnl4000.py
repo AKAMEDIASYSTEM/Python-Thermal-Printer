@@ -52,6 +52,18 @@ class VCNL4000():
     proxAdj = self.i2c.readU8(self.VCNL4000_PROXIMITYADJUST)
     print 'we think proximityAdjust is ',proxAdj
 
+  def setLEDcurrent(cur):
+    if (cur > 20) or (cur < 0):
+      cur = 10
+    self.i2c.write8(self.VCNL4000_IRLED, cur)
+
+  def continuousConversionOn():
+    self.i2c.write8(VCNL4000_AMBIENTPARAMETER, 0x89)
+
+  def continuousConversionOff():
+    self.i2c.write8(VCNL4000_AMBIENTPARAMETER, 0x09)    
+
+
   def readProximity(self):
     self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
     while True:
