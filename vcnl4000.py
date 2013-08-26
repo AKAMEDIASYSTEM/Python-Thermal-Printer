@@ -38,34 +38,34 @@ class VCNL4000():
   i2c = None
 
   def __init__(self, *args, **kwargs):
-    i2c = Adafruit_I2C(self.VCNL4000_ADDRESS)
-    rev = i2c.readU8(self.VCNL4000_PRODUCTID)
+    self.i2c = Adafruit_I2C(self.VCNL4000_ADDRESS)
+    rev = self.i2c.readU8(self.VCNL4000_PRODUCTID)
     if((rev & 0xF0) != 0x10):
       print 'Sensor not found wtf'
 
-    i2c.write8(self.VCNL4000_IRLED, 10) # set to 10 * 10mA = 100mA
-    current = i2c.readU8(self.VCNL4000_IRLED)
+    self.i2c.write8(self.VCNL4000_IRLED, 10) # set to 10 * 10mA = 100mA
+    current = self.i2c.readU8(self.VCNL4000_IRLED)
     print 'we think current is set to ', current
-    sigFreq = i2c.readU8(self.VCNL4000_SIGNALFREQ)
+    sigFreq = self.i2c.readU8(self.VCNL4000_SIGNALFREQ)
     print 'we think sigFreq is ',sigFreq
-    i2c.write8(self.VCNL4000_PROXIMITYADJUST, 0x81)
-    proxAdj = i2c.readU8(self.VCNL4000_PROXIMITYADJUST)
+    self.i2c.write8(self.VCNL4000_PROXIMITYADJUST, 0x81)
+    proxAdj = self.i2c.readU8(self.VCNL4000_PROXIMITYADJUST)
     print 'we think proximityAdjust is ',proxAdj
 
   def readProximity(self):
-    VCNL4000.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
+    self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
     while True:
-      result = VCNL4000.i2c.readU8(self.VCNL4000_COMMAND)
+      result = self.i2c.readU8(self.VCNL4000_COMMAND)
       if(result & self.VCNL4000_PROXIMITYREADY):
-        return VCNL4000.i2c.readU16(self.VCNL4000_PROXIMITYDATA)
+        return self.i2c.readU16(self.VCNL4000_PROXIMITYDATA)
       time.sleep(0.001)
 
   def readAmbient(self):
-    VCNL4000.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
+    self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
     while True:
-      result = VCNL4000.i2c.readU8(self.VCNL4000_COMMAND)
+      result = self.i2c.readU8(self.VCNL4000_COMMAND)
       if(result & self.VCNL4000_AMBIENTREADY):
-        return VCNL4000.i2c.readU16(self.VCNL4000_AMBIENTDATA)
+        return self.i2c.readU16(self.VCNL4000_AMBIENTDATA)
       time.sleep(0.001)
 
 
