@@ -9,9 +9,9 @@
 # You can pick one up at the Adafruit shop: www.adafruit.com/products/466
 
 from Adafruit_I2C import Adafruit_I2C
+import time
 
-
-class VCN4000():
+class VCNL4000():
   # the i2c address
   VCNL4000_ADDRESS = 0x13
 
