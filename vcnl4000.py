@@ -51,19 +51,19 @@ class VCNL4000():
     print 'we think proximityAdjust is ',proxAdj
 
   def readProximity(self):
-    self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
+    VCNL4000.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
     while True:
-      result = self.i2c.readU8(self.VCNL4000_COMMAND)
+      result = VCNL4000.i2c.readU8(self.VCNL4000_COMMAND)
       if(result & self.VCNL4000_PROXIMITYREADY):
-        return self.i2c.readU16(self.VCNL4000_PROXIMITYDATA)
+        return VCNL4000.i2c.readU16(self.VCNL4000_PROXIMITYDATA)
       time.sleep(0.001)
 
   def readAmbient(self):
-    self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
+    VCNL4000.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
     while True:
-      result = self.i2c.readU8(self.VCNL4000_COMMAND)
+      result = VCNL4000.i2c.readU8(self.VCNL4000_COMMAND)
       if(result & self.VCNL4000_AMBIENTREADY):
-        return self.i2c.readU16(self.VCNL4000_AMBIENTDATA)
+        return VCNL4000.i2c.readU16(self.VCNL4000_AMBIENTDATA)
       time.sleep(0.001)
 
 
