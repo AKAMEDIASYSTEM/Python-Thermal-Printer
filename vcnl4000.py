@@ -37,33 +37,33 @@ class VCNL4000():
 
   def __init__(self, *args, **kwargs):
     i2c = Adafruit_I2C(0x77)
-    rev = i2c.readU8(VCNL4000_PRODUCTID)
+    rev = i2c.readU8(self.VCNL4000_PRODUCTID)
     if((rev & 0xF0) != 0x10):
       print 'Sensor not found wtf'
 
-    i2c.write8(VCNL4000_IRLED, 10) # set to 10 * 10mA = 100mA
-    current = i2c.readU8(VCNL4000_IRLED)
+    i2c.write8(self.VCNL4000_IRLED, 10) # set to 10 * 10mA = 100mA
+    current = i2c.readU8(self.VCNL4000_IRLED)
     print 'we think current is set to ', current
-    sigFreq = i2c.read8(VCNL4000_SIGNALFREQ)
+    sigFreq = i2c.read8(self.VCNL4000_SIGNALFREQ)
     print 'we think sigFreq is ',sigFreq
-    i2c.write8(VCNL4000_PROXIMITYADJUST, 0x81)
-    proxAdj = i2c.readU8(VCNL4000_PROXIMITYADJUST)
+    i2c.write8(self.VCNL4000_PROXIMITYADJUST, 0x81)
+    proxAdj = i2c.readU8(self.VCNL4000_PROXIMITYADJUST)
     print 'we think proximityAdjust is ',proxAdj
 
   def readProximity():
-    i2c.write8(VCNL4000_COMMAND, VCNL4000_MEASUREPROXIMITY)
+    i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
     while True:
-      result = i2c.readU8(VCNL4000_COMMAND)
-      if(result & VCNL4000_PROXIMITYREADY):
-        return i2c.readU16(VCNL4000_PROXIMITYDATA)
+      result = i2c.readU8(self.VCNL4000_COMMAND)
+      if(result & self.VCNL4000_PROXIMITYREADY):
+        return i2c.readU16(self.VCNL4000_PROXIMITYDATA)
       time.sleep(0.001)
 
   def readAmbient():
-    i2c.write8(VCNL4000_COMMAND, VCNL4000_MEASUREPROXIMITY)
+    i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREPROXIMITY)
     while True:
-      result = i2c.readU8(VCNL4000_COMMAND)
-      if(result & VCNL4000_AMBIENTREADY):
-        return i2c.readU16(VCNL4000_AMBIENTDATA)
+      result = i2c.readU8(self.VCNL4000_COMMAND)
+      if(result & self.VCNL4000_AMBIENTREADY):
+        return i2c.readU16(self.VCNL4000_AMBIENTDATA)
       time.sleep(0.001)
 
 
@@ -71,7 +71,7 @@ class VCNL4000():
 # void setup() {
 #   Serial.begin(9600);
 
-#   Serial.println("VCNL");
+#   Serial.println("self.VCNL");
 #   Wire.begin();
 
 #   uint8_t rev = read8(VCNL4000_PRODUCTID);
