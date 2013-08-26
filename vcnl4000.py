@@ -35,6 +35,8 @@ class VCNL4000():
   VCNL4000_AMBIENTREADY = 0x40
   VCNL4000_PROXIMITYREADY = 0x20
 
+  i2c
+
   def __init__(self, *args, **kwargs):
     i2c = Adafruit_I2C(self.VCNL4000_ADDRESS)
     rev = i2c.readU8(self.VCNL4000_PRODUCTID)
