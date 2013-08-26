@@ -36,7 +36,7 @@ class VCNL4000():
   VCNL4000_PROXIMITYREADY = 0x20
 
   def __init__(self, *args, **kwargs):
-    i2c = Adafruit_I2C(0x77)
+    i2c = Adafruit_I2C(self.VCNL4000_ADDRESS)
     rev = i2c.readU8(self.VCNL4000_PRODUCTID)
     if((rev & 0xF0) != 0x10):
       print 'Sensor not found wtf'
