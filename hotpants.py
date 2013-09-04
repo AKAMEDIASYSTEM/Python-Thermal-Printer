@@ -23,6 +23,7 @@ printer.begin()
 printer.upsideDownOn()
 printer.feed(3)
 printer.print("o hai")
+printer.feed(1)
 rPast = 0
 emission_threshold = 0.05
 
