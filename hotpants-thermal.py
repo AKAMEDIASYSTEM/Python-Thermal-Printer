@@ -66,10 +66,10 @@ def checkSensor():
 		# 	printer.print(parseLen(random.choice(preamble) + random.choice(extreme_hi)))
 		# 	printer.feed(1)
 		if r < rPast:
-			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_hi)))
+			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_lo)))
 			printer.feed(1)
 		else:
-			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_lo)))
+			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_hi)))
 			printer.feed(1)
 		printer.print(r)
 		printer.feed(2)
