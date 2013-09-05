@@ -4,7 +4,7 @@ Description=NYT R&D HOT_PANTS PROX SENSOR
 [Service]
 Type=forking
 WorkingDirectory=/home/root/Python-Thermal-Printer/
-ExecStart=/usr/bin/python hotpants-prox.py
+ExecStart=/usr/bin/python hotpants-prox.py &
 KillMode=process
 
 [Install]
