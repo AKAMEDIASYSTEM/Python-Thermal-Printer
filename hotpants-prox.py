@@ -60,7 +60,7 @@ def checkSensor():
 			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_lo)))
 			printer.feed(1)
 		printer.print(r) # debug - prints sensor val that elicited the text
-		printer.print('delta of '+ delta)
+		printer.print(delta)
 		printer.feed(2)
 	rPast = r
 
