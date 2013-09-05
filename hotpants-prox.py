@@ -21,11 +21,11 @@ preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ','W
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
 printer.upsideDownOn()
-printer.feed(3)
+printer.feed(1)
 printer.print("o hai")
 printer.feed(1)
 rPast = 0
-emission_threshold = 0.05
+emission_threshold = 100
 
 def parseLen(text):
 	L = []
@@ -61,7 +61,8 @@ def checkSensor():
 		else:
 			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_hi)))
 			printer.feed(1)
-		printer.print(r)
+		printer.print(r) # debug - prints sensor val that elicited the text
+		printer.print('delta of '+r-rPast)
 		printer.feed(2)
 	rPast = r
 
