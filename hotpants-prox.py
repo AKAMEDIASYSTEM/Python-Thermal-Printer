@@ -25,7 +25,9 @@ printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
 printer.upsideDownOn()
 printer.feed(1)
-printer.print('i am awake and i am dreaming, '+str(time.ctime()))
+printer.print('i am awake and i am dreaming')
+printer.feed(1)
+printer.print(str(time.ctime()))
 printer.feed(1)
 rPast = 0
 emission_threshold = 100
