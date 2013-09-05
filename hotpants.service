@@ -6,6 +6,3 @@ Type=simple
 WorkingDirectory=/home/root/Python-Thermal-Printer/
 ExecStart=/usr/bin/python hotpants-prox.py &
 KillMode=process
-
-[Install]
-WantedBy=multi-user.target
