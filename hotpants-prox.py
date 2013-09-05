@@ -13,7 +13,7 @@ import VCNL4000 as vcnl
 
 
 uart.setup("UART2")
-atexit.register(exit_handler)
+# atexit.register(exit_handler)
 
 sensor_pin = 'P9_40'
 extreme_lo = ['dark','inky','shadowed','midnight''black','sinister','dour','glowering','glum','moody','morose','saturnine','sour','sullen','benighted','obscure','blue','dingy','disconsolate','dismal','gloomy','grim','sorry','drab','drear','dreary','colored','coloured','dark-skinned','non-white','depressing','dispiriting']
