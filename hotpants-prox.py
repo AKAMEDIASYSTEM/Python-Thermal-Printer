@@ -9,6 +9,7 @@ import time
 from serial import Serial
 import random
 import atexit
+import VCNL4000 as vcnl
 
 sensor_pin = 'P9_40'
 extreme_lo = ['dark','inky','shadowed','midnight''black','sinister','dour','glowering','glum','moody','morose','saturnine','sour','sullen','benighted','obscure','blue','dingy','disconsolate','dismal','gloomy','grim','sorry','drab','drear','dreary','colored','coloured','dark-skinned','non-white','depressing','dispiriting']
@@ -17,6 +18,8 @@ mid_hi = ['light','shiny','clear','lustrous','diaphanous','filmy','gauze-like','
 extreme_hi = ['blinding','superbright','brilliant','vivid','brilliant','vivid','smart','burnished','lustrous','shining','shiny','undimmed','promising','sunny','sunshiny']
 
 preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ','Well looky here, it is ','Suddenly: ','Call the police, it is ','After awhile: ','Things have changed; now it\'s more ']
+
+v = vcnl.VCNL4000()
 
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
@@ -46,23 +49,18 @@ def parseLen(text):
 
 def checkSensor():
 	global rPast
-	r = adc.read(sensor_pin)
-
-	if abs(r-rPast) > emission_threshold:
-		if r < 0.25:
-			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_lo)))
-			printer.feed(1)
-		elif r < 0.5:
-			printer.print(parseLen(random.choice(preamble) + random.choice(mid_lo)))
-			printer.feed(1)
-		elif r < 0.75:
-			printer.print(parseLen(random.choice(preamble) + random.choice(mid_hi)))
-			printer.feed(1)
-		else:
+	# r = adc.read(sensor_pin)
+	r = v.readProximity()
+	delta = r-rPast
+	if abs(delta) > emission_threshold:
+		if delta < 0:
 			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_hi)))
 			printer.feed(1)
+		else:
+			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_lo)))
+			printer.feed(1)
 		printer.print(r) # debug - prints sensor val that elicited the text
-		printer.print('delta of '+r-rPast)
+		printer.print('delta of '+ delta)
 		printer.feed(2)
 	rPast = r
 
@@ -73,7 +71,7 @@ def exit_handler():
     # uart.cleanup() # not yet supported?
 
 if __name__ == '__main__':
-	adc.setup()
+	# adc.setup()
 	uart.setup("UART2")
 	atexit.register(exit_handler)
 	while True:
